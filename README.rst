@@ -1,5 +1,5 @@
 Boulange
-============
+========
 
 Pastry inventory tracker.
 
