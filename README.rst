@@ -1,7 +1,12 @@
 Boulange
 ========
 
-Pastry inventory tracker.
+About
+-----
+Basic Inventory Tracker, it allows you to Create Read Update and Delete product inventory levels.
+
+Mainly this is a project for me to work on TDD and writing proper tests. Feel free to 
+submit pull requests with better tests to show me how to improve.
 
 Installation
 ------------
