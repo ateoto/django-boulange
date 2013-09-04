@@ -1,8 +1,5 @@
-"""Views for the boulange app."""
-# from django.views.generic import TemplateView
+from django.views.generic import ListView
+from .models import InventoryItem
 
-# from . import models
-
-
-# class YourView(TemplateView):
-#    template_name = 'boulange/default.html'
+class InventoryList(ListView):
+    model = InventoryItem

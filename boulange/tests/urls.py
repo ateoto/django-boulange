@@ -7,5 +7,6 @@ admin.autodiscover()
 
 urlpatterns = patterns(
     '',
+    url(r'^boulange/', include('boulange.urls')),
     url(r'^admin/', include(admin.site.urls)),
 )

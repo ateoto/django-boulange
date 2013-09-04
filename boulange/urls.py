@@ -1,12 +1,6 @@
-"""URLs for the boulange app."""
-# from django.conf.urls.defaults import patterns, url
+from django.conf.urls import patterns, url
+from .views import InventoryList
 
-# from . import views
-
-
-# urlpatterns = patterns(
-#     '',
-#     url(r'^$',
-#         views.YourView.as_view(),
-#         name='boulange_default'),
-# )
+urlpatterns = patterns('',
+    url(r'^inventory/$', InventoryList.as_view()),
+)

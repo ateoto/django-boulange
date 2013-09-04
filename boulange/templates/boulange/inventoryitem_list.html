@@ -1,0 +1,7 @@
+{% block content %}
+    <h2>Inventory Items
+        {% for inventory_item in object_list %}
+            <li>{{ inventory_item.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

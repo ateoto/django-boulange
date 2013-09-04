@@ -1,0 +1,8 @@
+{% block content %}
+    <h2>Current Inventory
+    <ul>
+        {% for on_hand_item in object_list %}
+            <li>{{ on_hand_item.name }}</li>
+        {% endfor %}
+    </ul>
+{% endblock %}

@@ -1,0 +1,1 @@
+[{"pk": 1, "model": "boulange.inventoryitem", "fields": {"case_size": 32, "inner_pack": false, "inner_pack_size": 0, "name": "Chocolate Croissant"}}]
