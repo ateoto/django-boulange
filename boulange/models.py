@@ -23,3 +23,20 @@ class OnHandInventoryItem(models.Model):
 
 	def eaches_on_hand(self):
 		return self.eaches + (self.inner_packs * self.item.inner_pack_size) + (self.cases * self.item.case_size)
+
+	def pull(self, eaches_pulled):
+		if self.eaches_on_hand() < eaches_pulled:
+			raise ArithmeticError('Not enough inventory to support that pull.')
+		else:
+			if self.eaches >= eaches_pulled:
+				self.eaches -= eaches_pulled
+			else:
+				if self.cases > 0:
+					self.cases -= 1
+					if self.item.inner_pack:
+						self.inner_packs = self.item.inner_pack_size / self.item.case_size
+					else:
+						self.eaches = self.item.case_size
+					self.eaches -= eaches_pulled
+				else:
+					raise ArithmeticError('Not enough inventory to support that pull.')

@@ -20,3 +20,14 @@ class OnHandInventoryItemTestCase(TestCase):
 
 		bcp = OnHandInventoryItem.objects.get(item__name='Birthday Cake Pop')
 		self.assertEqual(bcp.eaches_on_hand(), 68)
+
+	def test_pastry_pull(self):
+		chct = OnHandInventoryItem.objects.get(item__name='Chocolate Croissant')
+		chct.pull(15)
+		self.assertEqual(chct.cases, 1)
+		self.assertEqual(chct.eaches_on_hand(), 49)
+
+	def test_pastry_pull_overpull(self):
+		chct = OnHandInventoryItem.objects.get(item__name='Chocolate Croissant')
+		with self.assertRaises(ArithmeticError):
+			chct.pull(100)
