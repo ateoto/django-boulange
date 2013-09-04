@@ -14,9 +14,12 @@ class InventoryItem(models.Model):
 @python_2_unicode_compatible
 class OnHandInventoryItem(models.Model):
 	item = models.ForeignKey(InventoryItem)
-	eaches = models.IntegerField()
-	inner_packs = models.IntegerField()
-	cases = models.IntegerField()
+	eaches = models.IntegerField(default=0)
+	inner_packs = models.IntegerField(default=0)
+	cases = models.IntegerField(default=0)
 
 	def __str__(self):
 		return self.item.name
+
+	def eaches_on_hand(self):
+		return self.eaches + (self.inner_packs * self.item.inner_pack_size) + (self.cases * self.item.case_size)
