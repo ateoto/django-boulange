@@ -24,19 +24,41 @@ class OnHandInventoryItem(models.Model):
 	def eaches_on_hand(self):
 		return self.eaches + (self.inner_packs * self.item.inner_pack_size) + (self.cases * self.item.case_size)
 
-	def pull(self, eaches_pulled):
-		if self.eaches_on_hand() < eaches_pulled:
-			raise ArithmeticError('Not enough inventory to support that pull.')
+	def inner_packs_on_hand(self):
+		if self.item.inner_pack:
+			return (self.inner_packs + (self.cases * (self.item.case_size / self.item.inner_pack_size)))
 		else:
-			if self.eaches >= eaches_pulled:
-				self.eaches -= eaches_pulled
-			else:
-				if self.cases > 0:
-					self.cases -= 1
-					if self.item.inner_pack:
-						self.inner_packs = self.item.inner_pack_size / self.item.case_size
+			return 0
+
+	def pull(self, eaches_pulled):
+		if self.item.inner_pack:
+			if eaches_pulled % self.item.inner_pack_size == 0:
+				inner_packs_pulled = eaches_pulled / self.item.inner_pack_size
+				if inner_packs_pulled <= self.inner_packs_on_hand():
+					if inner_packs_pulled <= self.inner_packs:
+						self.inner_packs -= inner_packs_pulled
 					else:
-						self.eaches = self.item.case_size
+						self.cases -= 1
+						self.inner_packs += self.item.case_size / self.item.inner_pack_size
+						self.inner_pack -= inner_packs_pulled
+				else:
+					raise ArithmeticError('Not enough inventory to support pull.')
+			else:
+				raise NotImplementedError('Please pull in multiples of inner packs')
+
+		else:
+			if self.eaches_on_hand() < eaches_pulled:
+				raise ArithmeticError('Not enough inventory to support pull.')
+			else:
+				if self.eaches >= eaches_pulled:
 					self.eaches -= eaches_pulled
 				else:
-					raise ArithmeticError('Not enough inventory to support that pull.')
+					if self.cases > 0:
+						self.cases -= 1
+						if self.item.inner_pack:
+							self.inner_packs = self.item.inner_pack_size / self.item.case_size
+						else:
+							self.eaches = self.item.case_size
+						self.eaches -= eaches_pulled
+					else:
+						raise ArithmeticError('Not enough inventory to support pull.')
