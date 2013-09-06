@@ -40,7 +40,7 @@ class OnHandInventoryItem(models.Model):
 					else:
 						self.cases -= 1
 						self.inner_packs += self.item.case_size / self.item.inner_pack_size
-						self.inner_pack -= inner_packs_pulled
+						self.inner_packs -= inner_packs_pulled
 				else:
 					raise ArithmeticError('Not enough inventory to support pull.')
 			else:
@@ -55,10 +55,5 @@ class OnHandInventoryItem(models.Model):
 				else:
 					if self.cases > 0:
 						self.cases -= 1
-						if self.item.inner_pack:
-							self.inner_packs = self.item.inner_pack_size / self.item.case_size
-						else:
-							self.eaches = self.item.case_size
+						self.eaches = self.item.case_size
 						self.eaches -= eaches_pulled
-					else:
-						raise ArithmeticError('Not enough inventory to support pull.')
