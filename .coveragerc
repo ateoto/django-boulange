@@ -1,0 +1,7 @@
+[run]
+source = boulange
+omit = 
+  */tests*
+  */migrations*
+  */admin*
+  

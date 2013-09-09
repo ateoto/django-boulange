@@ -1,6 +1,12 @@
 Boulange
 ========
 
+.. image:: https://travis-ci.org/Ateoto/django-boulange.png?branch=master   
+    :target: https://travis-ci.org/Ateoto/django-boulange
+
+.. image:: https://coveralls.io/repos/Ateoto/django-boulange/badge.png?branch=master
+    :target: https://coveralls.io/r/Ateoto/django-boulange
+
 About
 -----
 Basic Inventory Tracker, it allows you to Create Read Update and Delete product inventory levels.
@@ -8,14 +14,9 @@ Basic Inventory Tracker, it allows you to Create Read Update and Delete product 
 Mainly this is a project for me to work on TDD and writing proper tests. Feel free to 
 submit pull requests with better tests to show me how to improve.
 
+
 Installation
 ------------
-
-To get the latest stable release from PyPi
-
-.. code-block:: bash
-
-    $ pip install django-boulange
 
 To get the latest commit from GitHub
 
