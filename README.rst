@@ -1,6 +1,12 @@
 Boulange
 ========
 
+.. image:: https://travis-ci.org/Ateoto/django-boulange.png?branch=master   
+    :target: https://travis-ci.org/Ateoto/django-boulange
+
+.. image:: https://coveralls.io/repos/Ateoto/django-boulange/badge.png?branch=master
+    :target: https://coveralls.io/r/Ateoto/django-boulange
+
 Pastry inventory tracker.
 
 Installation

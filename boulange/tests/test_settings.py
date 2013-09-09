@@ -36,6 +36,7 @@ TEMPLATE_DIRS = (
     os.path.join(APP_ROOT, 'templates'),
 )
 
+COVERAGE_USE_CACHE = True
 COVERAGE_REPORT_HTML_OUTPUT_DIR = os.path.join(
     os.path.join(APP_ROOT, 'tests/coverage'))
 COVERAGE_MODULE_EXCLUDES = [
